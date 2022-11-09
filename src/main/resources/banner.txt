@@ -1,0 +1,11 @@
+${AnsiColor.RED}
+   ___   ___   _       ____  ____   ___      ___  ____  ${AnsiColor.BRIGHT_RED}
+  /   ] /   \ | T     /    T|    \ |   \    /  _]|    \ ${AnsiColor.YELLOW}
+ /   / Y     Y| |    Y  o  ||  _  Y|    \  /  [_ |  D  )${AnsiColor.BRIGHT_GREEN}
+(   (  |  O  || l___ |  _  ||  |  ||  D  YY    _]|    / ${AnsiColor.GREEN}
+ \   \ l     !|     T|  |  ||  |  ||     ||   [_ |  . \ ${AnsiColor.BLUE}
+  \___j \___/ l_____jl__j__jl__j__jl_____jl_____jl__j\_j
+BY JAEMOON
+FROM 2022.01.19 ~
+${Ansi.NORMAL}
+..   http://patorjk.com/software/taag/#p=display&f=Crawford&t=timopass

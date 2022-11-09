@@ -22,12 +22,29 @@ repositories {
 }
 
 dependencies {
+
+	//1.DataBase
+	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
+	// implementation 'mysql:mysql-connector-java:8.0.29'	
+
+	//2.DB 연결 방식
+	// 1) MyBatis
+	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.2'
+	// 2) JOOQ
 	implementation 'org.springframework.boot:spring-boot-starter-jooq'
+	
+	
+	// 3.log
+	implementation 'org.apache.logging.log4j:log4j-core:2.18.0'
+	implementation 'org.apache.logging.log4j:log4j-api:2.18.0'
+	implementation 'org.apache.logging.log4j:log4j-to-slf4j:2.18.0'
+	
+	
+	
 	implementation 'org.springframework.boot:spring-boot-starter-web'
-	implementation 'org.springframework.session:spring-session-core'
+	// implementation 'org.springframework.session:spring-session-core'
 	compileOnly 'org.projectlombok:lombok'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
-	runtimeOnly 'org.mariadb.jdbc:mariadb-java-client'
 	annotationProcessor 'org.projectlombok:lombok'
 	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'

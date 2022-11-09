@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration debug="true">
+    <!--
+        <property name="LOG_FILE" value="${LOG_FILE:-${LOG_PATH:-${LOG_TEMP:-${java.io.tmpdir:-/tmp}}/}spring.log}"/>
+    -->
+
+    <!--
+        <include resource="org/s pringframework/boot/logging/logback/file-appender.xml" />
+    -->
+
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%-5level] %logger{15} - %msg%n%rEx</pattern>
+        </encoder>
+    </appender>
+
+
+	<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<!-- <file>D:\\logs\\catalina.log</file> -->
+		<file>../log/catalina.log</file>
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- 일별로 로그파일이 생성된다. -->
+			<!-- LOCAL -->
+			<!-- <fileNamePattern>D:\\logs\\ming-%d{yyyy-MM-dd}.%i.log</fileNamePattern> -->
+			<fileNamePattern>../log/api-%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+			<!-- 5MB가 넘으면 새로운 로그파일이 생성된다. -->
+			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>5MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+			<!-- 50건의 파일만 남기고 지난 로그파일은 삭제 된다. -->
+			<maxHistory>50</maxHistory>
+		</rollingPolicy>
+		<encoder>
+			<Pattern>
+				%d{yyyy-MM-dd HH:mm:ss} %level [%logger] - %msg%n
+			</Pattern>
+		</encoder>
+	</appender>
+
+	<logger name="com.jaemoon">
+		<level value="INFO"/>
+		<!-- <appender-ref ref="CONSOLE"/> -->
+		<appender-ref ref="FILE"/>
+	</logger>
+
+	<logger name="org.apache.mybatis">
+		<level value="WARN"/>
+		<appender-ref ref="CONSOLE"/>
+		<appender-ref ref="FILE"/>
+	</logger>
+	
+	<logger name="org.springframework">
+		<level value="WARN"/>
+		<appender-ref ref="CONSOLE"/>
+		<appender-ref ref="FILE"/>
+	</logger>
+	
+    <!-- <logger name="logger" level="INFO" appender-ref="CONSOLE"/> -->
+    
+	<root level="WARN">
+        <appender-ref ref="CONSOLE" />
+        <appender-ref ref="FILE" />
+    </root>
+    
+</configuration>
