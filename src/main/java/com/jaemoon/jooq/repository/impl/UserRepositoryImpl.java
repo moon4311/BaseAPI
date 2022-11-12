@@ -43,59 +43,60 @@ import java.util.Optional;
  * @since 25.11.2015
  */
 @Slf4j
-@Repository
+//@Repository
 public class UserRepositoryImpl implements UserRepository {
 
     @Autowired private DSLContext ctx;
-    @Autowired private AddressRepository addressRepository;
+//    @Autowired private AddressRepository addressRepository;
 
     @Override
     public List<User> getList() {
-        return ctx.select()
-        		.from(USER);
+//        return ctx.select().from(USER);
+    	return null;
     }
 
     public User getDetail(int userNo) {
-        return ctx.select()
-                  .from(USER)
-                  .where(USER.USER_NO.eq(userNo));
+//        return ctx.select()
+//                  .from(USER)
+//                  .where(USER.USER_NO.eq(userNo));
+    	return null;
     }
 
     public  void add(User form) {
-        int count = ctx.insertInto(USER)
-                       .set(USER.FIRST_NAME, form.getFirstName())
-                       .set(USER.LAST_NAME, form.getLastName())
-                       .set(USER.BIRTH_DAY, form.getBirthDay())
-                       .set(USER.SEX, form.getSex().getDatabaseValue())
-                       .set(USER.PHONE, form.getPhone())
-                       .set(USER.E_MAIL, form.getEMail())
-                       .set(USER.NOTE, form.getNote())
-                       .set(USER.ADDRESS_PK, addressPk)
-                       .set(USER.OCPP_TAG_PK, selectOcppTagPk(form.getOcppIdTag()))
-                       .execute();
-        if (count != 1) {
-            throw new SteveException("Failed to insert the user");
-        }
+//        int count = ctx.insertInto(USER)
+//                       .set(USER.FIRST_NAME, form.getFirstName())
+//                       .set(USER.LAST_NAME, form.getLastName())
+//                       .set(USER.BIRTH_DAY, form.getBirthDay())
+//                       .set(USER.SEX, form.getSex().getDatabaseValue())
+//                       .set(USER.PHONE, form.getPhone())
+//                       .set(USER.E_MAIL, form.getEMail())
+//                       .set(USER.NOTE, form.getNote())
+//                       .set(USER.ADDRESS_PK, addressPk)
+//                       .set(USER.OCPP_TAG_PK, selectOcppTagPk(form.getOcppIdTag()))
+//                       .execute();
+//        if (count != 1) {
+//            throw new SteveException("Failed to insert the user");
+//        }
     }
 
     public void update(User form) {
-        ctx.update(USER)
-           .set(USER.FIRST_NAME, form.getFirstName())
-           .set(USER.LAST_NAME, form.getLastName())
-           .set(USER.BIRTH_DAY, form.getBirthDay())
-           .set(USER.SEX, form.getSex().getDatabaseValue())
-           .set(USER.PHONE, form.getPhone())
-           .set(USER.E_MAIL, form.getEMail())
-           .set(USER.NOTE, form.getNote())
-           .set(USER.ADDRESS_PK, addressPk)
-           .set(USER.OCPP_TAG_PK, selectOcppTagPk(form.getOcppIdTag()))
-           .where(USER.USER_PK.eq(form.getUserPk()))
-           .execute();
+//        ctx.update(USER)
+//           .set(USER.FIRST_NAME, form.getFirstName())
+//           .set(USER.LAST_NAME, form.getLastName())
+//           .set(USER.BIRTH_DAY, form.getBirthDay())
+//           .set(USER.SEX, form.getSex().getDatabaseValue())
+//           .set(USER.PHONE, form.getPhone())
+//           .set(USER.E_MAIL, form.getEMail())
+//           .set(USER.NOTE, form.getNote())
+//           .set(USER.ADDRESS_PK, addressPk)
+//           .set(USER.OCPP_TAG_PK, selectOcppTagPk(form.getOcppIdTag()))
+//           .where(USER.USER_PK.eq(form.getUserPk()))
+//           .execute();
     }
 
     public void delete(int userNo) {
-        ctx.delete(USER)
-           .where(USER.USER_NO.equal(userNo))
-           .execute();
+//        ctx.delete(USER)
+//           .where(USER.USER_NO.equal(userNo))
+//           .execute();
     }
 }

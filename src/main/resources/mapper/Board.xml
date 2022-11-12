@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jaemoon.cmm.mapper.BoardMapper">
+ 
+ 	<sql id="tblnm">BOARD_TB</sql>
+ 	<sql id="where">WHERE seq = #{id}</sql>
+ 	
+ 	<!-- 다건 조회 -->
+ 	<select id="selectList" parameterType="map" resultType="map">
+		SELECT 	*
+		FROM 		<include refid="tblnm" />
+	</select>
+	
+ 	<!-- 단건 조회 -->
+ 	<select id="selectOne" parameterType="map" resultType="map">
+		SELECT 		*
+		FROM 		<include refid="tblnm" />
+		<include refid="where" />
+	</select>
+
+	<!-- 입력 -->
+	<insert id="insert" parameterType="map">
+		INSERT INTO <include refid="tblnm"/>
+		(
+			TITLE,
+			CONTENT,
+			REGIST_DT,
+			UPDATE_DT
+		)
+		values
+		(
+			#{title},
+			#{content},
+			now(),
+			now()
+		)
+	</insert>	
+	<!-- 수정-->
+	<update id="update" parameterType="map">
+		UPDATE <include refid="tblnm"/>
+		SET		TITLE = #{title},
+					CONTENT = #{content},
+					UPDATE_DT = now()
+		<include refid="where" />
+	</update>
+	<!-- 입력 -->
+	<delete id="delete" parameterType="map">
+		DELETE
+		FROM	<include refid="tblnm"/>
+		<include refid="where" />
+	</delete>
+</mapper>
