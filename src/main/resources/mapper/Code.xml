@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jaemoon.cmm.mapper.CodeMapper">
+ 
+ 	<sql id="tblnm">CODE_TB</sql>
+ 	<sql id="where">WHERE GROUP_CD = #{groupCd} AND CD = #{cd}</sql>
+ 	
+ 	<!-- 다건 조회 -->
+ 	<select id="selectList" parameterType="map" resultType="map">
+		SELECT 	*
+		FROM 		<include refid="tblnm" />
+		WHERE		1=1
+		<if test='groupCd!=null and !groupCd.equals("")'>
+		AND		GROUP_CD = #{groupCd}
+		</if>
+		ORDER BY SORT
+	</select>
+	
+ 	<!-- 단건 조회 -->
+ 	<select id="selectOne" parameterType="map" resultType="map">
+		SELECT 		*
+		FROM 		<include refid="tblnm" />
+		<include refid="where" />
+	</select>
+
+	<!-- 입력 -->
+	<insert id="insertGroup" parameterType="map">
+		INSERT INTO <include refid="tblnm"/>
+		(
+			GROUP_CD,
+			CD,
+			NM,
+			SORT,
+			MEMO
+		)
+		VALUES
+		(
+			fn_seq('code'),
+			null,
+			#{nm},
+			#{sort},
+			#{memo}
+		)
+	</insert>
+	
+	<insert id="insert" parameterType="map">
+		INSERT INTO <include refid="tblnm"/>
+		(
+			GROUP_CD,
+			CD,
+			NM,
+			SORT,
+			MEMO
+		)
+		VALUES
+		(
+			#{groupCd},
+			#{cd},
+			#{nm},
+			#{sort},
+			#{memo}
+		)
+	</insert>
+	
+	
+	<!-- 수정-->
+	<update id="update" parameterType="map">
+		UPDATE 	<include refid="tblnm"/>
+		SET			NM = #{nm},
+						SORT = #{sort}
+		<include refid="where" />
+	</update>
+	<!-- 입력 -->
+	<delete id="delete" parameterType="map">
+		DELETE
+		FROM		<include refid="tblnm"/>
+		<include refid="where" />
+	</delete>
+</mapper>
