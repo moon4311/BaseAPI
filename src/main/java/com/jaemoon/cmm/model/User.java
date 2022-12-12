@@ -29,5 +29,5 @@ import lombok.Setter;
 public final class User extends BaseModel{
 
     private Integer userNo;
-    private String userId, userNm, password;
+    private String userId, userNm, password, tel;
 }

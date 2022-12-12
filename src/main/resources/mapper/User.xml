@@ -6,13 +6,13 @@
  	<sql id="where">WHERE USER_NO = #{id}</sql>
  	
  	<!-- 다건 조회 -->
- 	<select id="selectList" parameterType="map" resultType="map">
+ 	<select id="selectList" parameterType="map" resultType="com.jaemoon.cmm.model.User">
 		SELECT 	*
 		FROM 		<include refid="tblnm" />
 	</select>
 	
  	<!-- 단건 조회 -->
- 	<select id="selectOne" parameterType="map" resultType="map">
+ 	<select id="selectOne" parameterType="map" resultType="com.jaemoon.cmm.model.User">
 		SELECT 		*
 		FROM 		<include refid="tblnm" />
 		<include refid="where" />
@@ -25,6 +25,7 @@
 			USER_ID,
 			USER_NM,
 			PASSWORD,
+			TEL,
 			REGIST_DT,
 			UPDATE_DT
 		)
@@ -33,6 +34,7 @@
 			#{userId},
 			#{userNm},
 			#{password},
+			#{tel},
 			now(),
 			now()
 		)
@@ -42,6 +44,7 @@
 		UPDATE <include refid="tblnm"/>
 		SET		USER_NM = #{userNm},
 					PASSWORD = #{password},
+					TEL			= #{tel},
 					UPDATE_DT = now()
 		<include refid="where" />
 	</update>
