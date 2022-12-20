@@ -17,6 +17,7 @@ public interface UserMapper {
 
   public List<User> selectList(Map<String,Object> map);
   public User selectOne(String id);
+  public User selectByUserId(String id);
   
   public int insert(Map<String,Object> map);
   public int update(Map<String,Object> map);

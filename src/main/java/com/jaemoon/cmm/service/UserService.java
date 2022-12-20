@@ -3,6 +3,9 @@ package com.jaemoon.cmm.service;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.jaemoon.base.BaseServiceIf;
@@ -15,7 +18,7 @@ import lombok.RequiredArgsConstructor;
 
 @Service
 @RequiredArgsConstructor
-public class UserService extends ServiceParent  implements BaseServiceIf{
+public class UserService extends ServiceParent  implements BaseServiceIf, UserDetailsService{
 
 	// 수정 1
 	private final UserMapper mapper;
@@ -23,6 +26,16 @@ public class UserService extends ServiceParent  implements BaseServiceIf{
 	// 수정 2	
 	private final static String PK = "userNo";
 
+	
+	@Override
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+		// TODO Auto-generated method stub
+		
+		User user = mapper.selectByUserId(username);
+		
+		
+		return null;
+	}
 
 	/**
 	 * 중복 확인
