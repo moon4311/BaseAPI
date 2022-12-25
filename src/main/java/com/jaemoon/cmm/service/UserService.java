@@ -33,8 +33,7 @@ public class UserService extends ServiceParent  implements BaseServiceIf, UserDe
 		
 		User user = mapper.selectByUserId(username);
 		
-		
-		return null;
+		return user;
 	}
 
 	/**
