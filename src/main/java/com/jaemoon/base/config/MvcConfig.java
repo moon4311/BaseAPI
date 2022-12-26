@@ -30,7 +30,7 @@ public class MvcConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(webInterceptor())
-//                .addPathPatterns("/**/*")
+                .addPathPatterns("/**/*")
 //                .addPathPatterns("/loginProcess") //app jwt 확인
                 .excludePathPatterns("/open/*"); 
     }
@@ -41,7 +41,7 @@ public class MvcConfig implements WebMvcConfigurer {
 		        .allowedOrigins(allowedOrigins.split(","))
 		        .allowedMethods("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS")
 		        .allowedHeaders("*")
-		        .allowCredentials(false)
+		        .allowCredentials(true)
 		        .maxAge(MAX_AGE_SECS);
     }
     
