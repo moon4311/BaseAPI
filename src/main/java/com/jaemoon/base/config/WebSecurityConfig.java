@@ -26,26 +26,15 @@ public class WebSecurityConfig {
 			.formLogin(
 				(form) -> form
 				.loginPage("/login")
+				.loginProcessingUrl("/loginProcess")
 				.usernameParameter("username")
 				.passwordParameter("password")
-				.loginProcessingUrl("/loginProcess")
 				.successHandler(successHandler)
 				.permitAll()
 			)
 			.logout((logout) -> logout.permitAll());
+		
 		return http.build();
 	}
 
-	
-//	@Bean
-//	public UserDetailsService userDetailsService() {
-//		UserDetails user =
-//			 User.withDefaultPasswordEncoder()
-//				.username("username")
-//				.password("password")
-//				.roles("USER")
-//				.build();
-//
-//		return new InMemoryUserDetailsManager(user);
-//	}
 }
