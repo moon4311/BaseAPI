@@ -6,7 +6,7 @@
  	<sql id="where">WHERE MENU_ID = #{menuId}</sql>
  	
  	<!-- 다건 조회 -->
- 	<select id="selectList" parameterType="map" resultType="map">
+ 	<select id="selectList" parameterType="map" resultType="Menu">
 		SELECT 	*
 		FROM 		<include refid="tblnm" />
 		WHERE 		1=1
@@ -14,7 +14,7 @@
 	</select>
 	
  	<!-- 단건 조회 -->
- 	<select id="selectOne" parameterType="map" resultType="map">
+ 	<select id="selectOne" parameterType="map" resultType="Menu">
 		SELECT 		*
 		FROM 		<include refid="tblnm" />
 		<include refid="where" />

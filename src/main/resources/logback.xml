@@ -42,7 +42,7 @@
 	<logger name="com.jaemoon">
 		<level value="INFO"/>
 		<!-- <appender-ref ref="CONSOLE"/> -->
-		<appender-ref ref="FILE"/>
+		<!-- <appender-ref ref="FILE"/> -->
 	</logger>
 
 	<logger name="org.apache.mybatis">
@@ -52,14 +52,14 @@
 	</logger>
 	
 	<logger name="org.springframework">
-		<level value="WARN"/>
+		<level value="INFO"/>
 		<appender-ref ref="CONSOLE"/>
 		<appender-ref ref="FILE"/>
 	</logger>
 	
     <!-- <logger name="logger" level="INFO" appender-ref="CONSOLE"/> -->
     
-	<root level="WARN">
+	<root level="INFO">
         <appender-ref ref="CONSOLE" />
         <appender-ref ref="FILE" />
     </root>

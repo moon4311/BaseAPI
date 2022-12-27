@@ -30,6 +30,6 @@
 	</settings>
     <typeAliases>
         <typeAlias alias="map" type="java.util.Map" /> 
-    	<package name="kr.co.colander.model"/>
+    	<package name="com.jaemoon.cmm.model"/>
     </typeAliases>
 </configuration>

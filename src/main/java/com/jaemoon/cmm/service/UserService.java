@@ -29,11 +29,7 @@ public class UserService extends ServiceParent  implements BaseServiceIf, UserDe
 	
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		// TODO Auto-generated method stub
-		
-		User user = mapper.selectByUserId(username);
-		
-		return user;
+		return mapper.selectByUserId(username);
 	}
 
 	/**

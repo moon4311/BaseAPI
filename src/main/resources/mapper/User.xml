@@ -6,19 +6,19 @@
  	<sql id="where">WHERE USER_NO = #{id}</sql>
  	
  	<!-- 다건 조회 -->
- 	<select id="selectList" parameterType="map" resultType="com.jaemoon.cmm.model.User">
+ 	<select id="selectList" parameterType="map" resultType="User">
 		SELECT 	*
 		FROM 		<include refid="tblnm" />
 	</select>
 	
  	<!-- 단건 조회 -->
- 	<select id="selectOne" parameterType="map" resultType="com.jaemoon.cmm.model.User">
+ 	<select id="selectOne" parameterType="map" resultType="User">
 		SELECT 		*
 		FROM 		<include refid="tblnm" />
 		<include refid="where" />
 	</select>
 
- 	<select id="selectByUserId" parameterType="String" resultType="com.jaemoon.cmm.model.User">
+ 	<select id="selectByUserId" parameterType="String" resultType="User">
 		SELECT 		*
 		FROM 		<include refid="tblnm" />
 		WHERE		USER_ID = #{userId}

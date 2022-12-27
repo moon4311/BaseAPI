@@ -35,6 +35,7 @@ public final class User extends BaseModel implements UserDetails{
 
     private Integer userNo;
     private String userId, userNm, password, tel;
+    private String role;
     
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
