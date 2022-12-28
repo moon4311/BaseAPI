@@ -15,14 +15,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jaemoon.base.CmmRslt;
-import com.jaemoon.cmm.service.CodeService;
+import com.jaemoon.cmm.service.AuthGrantService;
 
 @RestController
-@RequestMapping("/code")
-public class CodeController {
+@RequestMapping("/authGrant")
+public class AuthGrantController {
 
 	@Resource
-	private CodeService service;
+	private AuthGrantService service;
 	
 	@GetMapping("/list")
 	public CmmRslt getList(@RequestParam Map<String,Object> map) {
@@ -37,7 +37,6 @@ public class CodeController {
 		rslt.setData( service.selectOne(id) );
 		return rslt;
 	}
-	
 	@PostMapping("/info")
 	public CmmRslt insert(@RequestBody Map<String,Object> map) {
 		CmmRslt rslt = CmmRslt.getSuccessResult();

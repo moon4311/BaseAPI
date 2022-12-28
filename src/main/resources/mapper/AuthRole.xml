@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jaemoon.cmm.mapper.AuthRoleMapper">
+ 
+ 	<sql id="tblnm">AUTH_ROLE_TB</sql>
+ 	<sql id="where">WHERE ROLE_ID = #{roleId}</sql>
+ 	
+ 	<!-- 다건 조회 -->
+ 	<select id="selectList" parameterType="map" resultType="Menu">
+		SELECT 	*
+		FROM 		<include refid="tblnm" />
+		WHERE 		1=1
+		ORDER BY LEVEL, SORT
+	</select>
+	
+ 	<!-- 단건 조회 -->
+ 	<select id="selectOne" parameterType="map" resultType="Menu">
+		SELECT 		*
+		FROM 		<include refid="tblnm" />
+		<include refid="where" />
+	</select>
+
+	<!-- 입력 -->
+	<insert id="insert" parameterType="map">
+		INSERT INTO <include refid="tblnm"/>
+		(
+			MENU_ID,
+			MENU_NM,
+			UPPER_MENU_ID,
+			URL,
+			LEVEL,
+			SORT
+		)
+		VALUES
+		(
+			fn_seq('menu'),
+			#{menuNm},
+			#{upperMenuId},
+			#{url},
+			#{level},
+			#{sort}
+		)
+	</insert>	
+	<!-- 수정-->
+	<update id="update" parameterType="map">
+		UPDATE 	<include refid="tblnm"/>
+		SET			MENU_NM = #{menuNm},
+						URL = #{url},
+						LEVEL= #{level},
+						SORT = #{sort}
+		<include refid="where" />
+	</update>
+	<!-- 입력 -->
+	<delete id="delete" parameterType="map">
+		DELETE
+		FROM		<include refid="tblnm"/>
+		<include refid="where" />
+	</delete>
+</mapper>
