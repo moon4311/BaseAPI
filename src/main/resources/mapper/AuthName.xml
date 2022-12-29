@@ -10,7 +10,6 @@
 		SELECT 	*
 		FROM 		<include refid="tblnm" />
 		WHERE 		1=1
-		ORDER BY LEVEL, SORT
 	</select>
 	
  	<!-- 단건 조회 -->
