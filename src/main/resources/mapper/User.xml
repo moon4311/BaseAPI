@@ -9,6 +9,10 @@
  	<select id="selectList" parameterType="map" resultType="User">
 		SELECT 	*
 		FROM 		<include refid="tblnm" />
+		WHERE 1=1
+		<if test='userNm!=null and !userNm.equals("")'>
+		AND	USER_NM like concat('%',#{userNm},'%')
+		</if>
 	</select>
 	
  	<!-- 단건 조회 -->
