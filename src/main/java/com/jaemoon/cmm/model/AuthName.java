@@ -28,6 +28,6 @@ import lombok.Setter;
 @Setter
 public final class AuthName extends BaseModel{
 
-    private String authId, authNm;
+    private String authCd, authNm, authDc;
     
 }

@@ -6,14 +6,14 @@
  	<sql id="where">WHERE AUTH_ID = #{authId}</sql>
  	
  	<!-- 다건 조회 -->
- 	<select id="selectList" parameterType="map" resultType="Menu">
+ 	<select id="selectList" parameterType="map" resultType="AuthName">
 		SELECT 	*
 		FROM 		<include refid="tblnm" />
 		WHERE 		1=1
 	</select>
 	
  	<!-- 단건 조회 -->
- 	<select id="selectOne" parameterType="map" resultType="Menu">
+ 	<select id="selectOne" parameterType="map" resultType="AuthName">
 		SELECT 		*
 		FROM 		<include refid="tblnm" />
 		<include refid="where" />

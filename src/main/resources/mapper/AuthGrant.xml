@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.jaemoon.cmm.mapper.MenuMapper">
+<mapper namespace="com.jaemoon.cmm.mapper.AuthGrantMapper">
  
- 	<sql id="tblnm">MENU_TB</sql>
- 	<sql id="where">WHERE MENU_ID = #{menuId}</sql>
+ 	<sql id="tblnm">AUTH_GRANT_TB</sql>
+ 	<sql id="where">WHERE AUTH_ID = #{authId}</sql>
  	
  	<!-- 다건 조회 -->
- 	<select id="selectList" parameterType="map" resultType="Menu">
+ 	<select id="selectList" parameterType="map" resultType="AuthName">
 		SELECT 	*
 		FROM 		<include refid="tblnm" />
 		WHERE 		1=1
-		ORDER BY LEVEL desc, SORT
 	</select>
 	
  	<!-- 단건 조회 -->
- 	<select id="selectOne" parameterType="map" resultType="Menu">
+ 	<select id="selectOne" parameterType="map" resultType="AuthName">
 		SELECT 		*
 		FROM 		<include refid="tblnm" />
 		<include refid="where" />
@@ -25,20 +24,18 @@
 		INSERT INTO <include refid="tblnm"/>
 		(
 			MENU_ID,
-			NAME,
+			MENU_NM,
 			UPPER_MENU_ID,
-			PATH,
-			COMPONENT,
+			URL,
 			LEVEL,
 			SORT
 		)
 		VALUES
 		(
 			fn_seq('menu'),
-			#{name},
+			#{menuNm},
 			#{upperMenuId},
-			#{path},
-			#{component},
+			#{url},
 			#{level},
 			#{sort}
 		)
