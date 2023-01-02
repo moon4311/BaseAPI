@@ -46,8 +46,9 @@
 	<!-- 수정-->
 	<update id="update" parameterType="map">
 		UPDATE 	<include refid="tblnm"/>
-		SET			MENU_NM = #{menuNm},
-						URL = #{url},
+		SET			NAME = #{name},
+						PATH = #{path},
+						COMPONENT = #{component},
 						LEVEL= #{level},
 						SORT = #{sort}
 		<include refid="where" />
