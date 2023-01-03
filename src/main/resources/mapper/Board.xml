@@ -6,13 +6,13 @@
  	<sql id="where">WHERE seq = #{id}</sql>
  	
  	<!-- 다건 조회 -->
- 	<select id="selectList" parameterType="map" resultType="map">
+ 	<select id="selectList" parameterType="map" resultType="Board">
 		SELECT 	*
 		FROM 		<include refid="tblnm" />
 	</select>
 	
  	<!-- 단건 조회 -->
- 	<select id="selectOne" parameterType="map" resultType="map">
+ 	<select id="selectOne" parameterType="map" resultType="Board">
 		SELECT 		*
 		FROM 		<include refid="tblnm" />
 		<include refid="where" />
@@ -25,14 +25,18 @@
 			TITLE,
 			CONTENT,
 			REGIST_DT,
-			UPDATE_DT
+			REGIST_ID,
+			UPDATE_DT,
+			UPDATE_ID
 		)
 		values
 		(
 			#{title},
 			#{content},
 			now(),
-			now()
+			now(),
+			'admin',
+			'admin'
 		)
 	</insert>	
 	<!-- 수정-->

@@ -11,5 +11,6 @@ public class BaseModel {
 
 	private String useYn;
 	private Date registDt, updateDt;
+	private String registId, updateId;
 	
 }

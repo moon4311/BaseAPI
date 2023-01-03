@@ -6,7 +6,7 @@
  	<sql id="where">WHERE GROUP_CD = #{groupCd} AND CD = #{cd}</sql>
  	
  	<!-- 다건 조회 -->
- 	<select id="selectList" parameterType="map" resultType="map">
+ 	<select id="selectList" parameterType="map" resultType="Code">
 		SELECT 	*
 		FROM 		<include refid="tblnm" />
 		WHERE		1=1
@@ -17,7 +17,7 @@
 	</select>
 	
  	<!-- 단건 조회 -->
- 	<select id="selectOne" parameterType="map" resultType="map">
+ 	<select id="selectOne" parameterType="map" resultType="Code">
 		SELECT 		*
 		FROM 		<include refid="tblnm" />
 		<include refid="where" />

@@ -1,15 +1,14 @@
 package com.jaemoon.cmm.service;
 
-import java.util.List;
 import java.util.Map;
 
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
 import com.jaemoon.base.BaseServiceIf;
 import com.jaemoon.base.CmmRslt;
 import com.jaemoon.base.ServiceParent;
 import com.jaemoon.cmm.mapper.CodeMapper;
-import com.jaemoon.cmm.model.Code;
 
 import lombok.RequiredArgsConstructor;
 
@@ -60,12 +59,13 @@ public class CodeService extends ServiceParent  implements BaseServiceIf{
 	@Override
 	public CmmRslt upsert(Map<String, Object> map) {
 		CmmRslt rslt = CmmRslt.getSuccessResult();
-		if(isNullPk(map,PK)  ) {
+		try {
 			insert(map);
-		}else {
+		}catch(DuplicateKeyException e) {
 			update(map);
+		}catch(Exception e) {
+			e.printStackTrace();
 		}
-		
 		return rslt;
 	}
 	
