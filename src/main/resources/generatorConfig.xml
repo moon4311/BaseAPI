@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+
+<properties resource="generatorConfig.properties"/>
+  <context id="context1" targetRuntime="MyBatis3">
+    
+    <property name="targetJava8" value="true"/>
+    
+    <!-- Url -->
+    <jdbcConnection 
+    		driverClass="${JDBC.driverClass}" 
+    		connectionURL="${JDBC.connectionURL}" 
+    		userId="${JDBC.userId}"
+    		password="${JDBC.password}"
+    		/>
+    
+    <javaTypeResolver>
+      <property name="forceBigDecimals" value="false" />
+    </javaTypeResolver>
+    
+    <!-- Model.java -->
+    <javaModelGenerator
+    	targetProject="${targetProject}"
+    	targetPackage="${targetPackage.model}"
+    >
+    	<property name="constructorBased" value="true"/>
+    </javaModelGenerator>
+    
+    
+    <!-- Mapper.xml -->
+    <sqlMapGenerator
+    	targetProject="${targetProject}/src/main/resources"
+    	targetPackage="${targetPackage.mapper}"
+    />
+    
+    <!-- targetRuntime="Mybatis3" 일떄만 사용 
+    	type : ( ANNOTATEDMAPPER / MIXEDMAPPER / XMLMAPPER )
+    -->
+    <!--  Mapper.java  -->
+    <javaClientGenerator 
+    	targetProject="${targetProject}"
+    	targetPackage="${targetPackage.client}"
+    	type="XMLMAPPER" 
+    >
+    </javaClientGenerator>
+    
+    <table tableName="MENU_TB"  	domainObjectName="MenuInfo"   >
+    	<generatedKey column="MENU_ID" sqlStatement="JDBC" type="pre" />
+    	<!-- <ignoreColumn column="FRED" />
+    	<columnOverride column="LONG_VARCHAR_FIELD" jdbcType="VARCHAR" /> -->
+    </table>
+    
+    
+    
+    
+    
+<!--     <table 	tableName="TB_CMSADMENUTYPE"  	domainObjectName="MenuType"   >
+    	<generatedKey column="MENU_ID" sqlStatement="JDBC" type="pre" />
+    </table>
+    <table 	tableName="TB_CMSCOMMONCODE"  	domainObjectName="ComnCode"   >
+    	<generatedKey column="MENU_ID" sqlStatement="JDBC" type="pre" />
+    </table>
+    <table 	tableName="TB_CMSIPCONFIG"  	domainObjectName="IpConfig"   >
+    	<generatedKey column="MENU_ID" sqlStatement="JDBC" type="pre" />
+    </table>
+
+    <table 	tableName="TB_CMSIPCONFIGINFO"  	domainObjectName="IpConfigInfo"   >
+    	<generatedKey column="MENU_ID" sqlStatement="JDBC" type="pre" />
+    </table>
+    <table 	tableName="TB_CMSMBR"  	domainObjectName="MBR"   >
+    	<generatedKey column="MBR_ID" sqlStatement="JDBC" type="pre" />
+    </table>
+    <table 	tableName="TB_CMSMBRLOG"  	domainObjectName="MbrLog"   >
+    </table>
+    <table 	tableName="TB_CMSMBRSESS"  	domainObjectName="MbrSess"   >
+    </table>
+    <table 	tableName="TB_CMSMBRTYPE"  	domainObjectName="MbrType"   >
+    </table>
+    <table 	tableName="TB_CMSVISITLOG"  	domainObjectName="VisitLog"   >
+    </table>
+    <table 	tableName="TB_LOGINLOG"  	domainObjectName="LoginLog"   >
+    </table> -->
+     
+  </context>
+  
+</generatorConfiguration>
+
+<!-- 
+
+참고 : https://mybatis.org/generator/quickstart.html
+* -> 필수 항목
+<generatorConfguration>
+	<context
+		id : 아무거나
+		targetRuntime : MyBatis3   ( MyBatis3DynamicSql / MyBatis3Kotlin / MyBatis3 / MyBatis3Simple)
+	<jdbcConnection
+		driverClass : db driver
+		connectUrl : 
+		userId :
+		password : 
+	/>
+	
+	<javaModelGenerator
+	*	targetProject : vo.java 파일을 저장할 프로젝트
+	*	targetPacakage : vo.java 파일 저장될 폴더위치
+	/>
+	<sqlMapGenerator 
+	*	targetProject : mapper.xml 파일을 저장할 프로젝트
+	*	targetPacakage : mapper.xml 파일 저장될 폴더위치
+	/>
+	<javaClientGenerator
+	*	targetProject : mapper.java 파일을 저장할 프로젝트
+	*	targetPacakage : mapper.java 파일 저장될 폴더위치
+	/>
+	
+	
+	<table
+	*	tableName : DB 상의 테이블명
+		alias : mapper.xml 상의 테이블 별칭
+		mapperName : mapper.java , mapper.xml 파일명  
+			모델(VO) 이름은 테이블명 그대로 사용된다.
+			ex) visit -> visit.java, visit,xml
+		domainObjectName : mapper.java, mapper.xml, [modelVO].java 파일명
+			모델(VO) 이름도 domainName에 따라 변경된다.
+			ex ) visit -> visitMapper.java, visitMapper.xml , visit.java
+	>
+		<generatedKey
+		*	column :
+		*	sqlStatement : DB 종류  (Cloudscape / DB2 / DB2_MF / Derby / HSQLDB / Informix / MySql / SqlServer / SYBASE / JDBC)
+			
+			1) identity : true, type : post 
+			2) identity : true
+			3) type : pre
+			4) 생략
+		/>
+		
+		<ignoreColumnsByRegex : 무시 컬럼 정규식 표현 
+			pattern="(?i)col.*">
+	        <except column="col01"/> : col01 컬럼 제외한 col.* 무시
+      	</ignoreColumnsByRegex>	
+	</table>
+</generatorConfguration>
+ -->
