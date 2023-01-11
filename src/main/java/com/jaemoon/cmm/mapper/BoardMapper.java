@@ -5,7 +5,7 @@ import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
-import com.jaemoon.cmm.model.User;
+import com.jaemoon.cmm.model.Board;
 /**
  * 
  * 
@@ -15,8 +15,8 @@ import com.jaemoon.cmm.model.User;
 @Mapper
 public interface BoardMapper {
 
-  public List<User> selectList(Map<String,Object> map);
-  public User selectOne(String id);
+  public List<Board> selectList(Map<String,Object> map);
+  public Board selectOne(String id);
   
   public int insert(Map<String,Object> map);
   public int update(Map<String,Object> map);

@@ -25,14 +25,14 @@
 		(
 			TEMPLATE_ID,
 			TEMPLATE_NM,
-			CONTENTS,
+			CONTENT,
 			MEMO
 		)
 		VALUES
 		(
 			#{templateId},
 			#{templateNm},
-			#{contents},
+			#{content},
 			#{memo}
 		)
 	</insert>
@@ -43,7 +43,7 @@
 		UPDATE 	<include refid="tblnm"/>
 		SET			TEMPLATE_ID 	=  #{templateId},
 						TEMPLATE_NM 	= #{templateNm},
-						CONTENTS 		= #{contents},
+						CONTENT	 		= #{content},
 						MENO 				= #{memo}
 		<include refid="where" />
 	</update>

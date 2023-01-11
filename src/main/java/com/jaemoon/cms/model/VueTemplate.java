@@ -6,5 +6,5 @@ import lombok.Setter;
 @Getter
 @Setter
 public class VueTemplate {
-	private String sno, templateId, templateNm, contents, memo;
+	private String sno, templateId, templateNm, content, memo;
 }
