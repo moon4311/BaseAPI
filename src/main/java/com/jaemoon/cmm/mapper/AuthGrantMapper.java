@@ -16,9 +16,8 @@ import com.jaemoon.cmm.model.Menu;
 @Mapper
 public interface AuthGrantMapper {
 
-  public List<AuthGrant> selectTree();
   public List<AuthGrant> selectList(Map<String,Object> map);
-  public Menu selectOne(String id);
+  public AuthGrant selectOne(String id);
   
   public int insert(Map<String,Object> map);
   public int update(Map<String,Object> map);

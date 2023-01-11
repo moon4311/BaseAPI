@@ -23,30 +23,19 @@
 	<insert id="insert" parameterType="map">
 		INSERT INTO <include refid="tblnm"/>
 		(
-			MENU_ID,
-			MENU_NM,
-			UPPER_MENU_ID,
-			URL,
-			LEVEL,
-			SORT
+			AUTH_ID,
+			AUTH_NM
 		)
 		VALUES
 		(
-			fn_seq('menu'),
-			#{menuNm},
-			#{upperMenuId},
-			#{url},
-			#{level},
-			#{sort}
+			#{authId},
+			#{authNm}
 		)
 	</insert>	
 	<!-- 수정-->
 	<update id="update" parameterType="map">
 		UPDATE 	<include refid="tblnm"/>
-		SET			MENU_NM = #{menuNm},
-						URL = #{url},
-						LEVEL= #{level},
-						SORT = #{sort}
+		SET			AUTH_NM = #{authNm}
 		<include refid="where" />
 	</update>
 	<!-- 입력 -->
