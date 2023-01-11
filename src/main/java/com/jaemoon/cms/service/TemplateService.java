@@ -1,23 +1,25 @@
-package com.jaemoon.cmm.service;
+package com.jaemoon.cms.service;
 
 import java.util.Map;
+
+import org.springframework.stereotype.Service;
 
 import com.jaemoon.base.BaseServiceIf;
 import com.jaemoon.base.CmmRslt;
 import com.jaemoon.base.ServiceParent;
-import com.jaemoon.cmm.mapper.UserMapper;
+import com.jaemoon.cms.mapper.VueTemplateMapper;
 
 import lombok.RequiredArgsConstructor;
 
-//@Service
+@Service
 @RequiredArgsConstructor
-public class SampleService extends ServiceParent  implements BaseServiceIf{
+public class TemplateService extends ServiceParent  implements BaseServiceIf{
 
 	// 수정 1
-	private final UserMapper mapper;
+	private final VueTemplateMapper mapper;
 
 	// 수정 2	
-	private final static String PK = "tablePk";
+	private final static String PK = "sno";
 
 
 	@Override

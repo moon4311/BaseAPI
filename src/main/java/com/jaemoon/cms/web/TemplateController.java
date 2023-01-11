@@ -1,4 +1,4 @@
-package com.jaemoon.cmm.web;
+package com.jaemoon.cms.web;
 
 import java.util.Map;
 
@@ -14,14 +14,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jaemoon.base.CmmRslt;
-import com.jaemoon.cmm.service.MenuService;
+import com.jaemoon.cms.service.TemplateService;
 
 @RestController
-@RequestMapping("/menu")
-public class MenuController {
+@RequestMapping("/template")
+public class TemplateController {
 
 	@Resource
-	private MenuService service;
+	private TemplateService service;
 	
 	@GetMapping("/list")
 	public CmmRslt getList(@RequestParam Map<String,Object> map) {

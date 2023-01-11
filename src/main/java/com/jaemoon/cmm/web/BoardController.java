@@ -39,6 +39,13 @@ public class BoardController {
 		return rslt;
 	}
 	
+	@PostMapping("/save")
+	public CmmRslt save(@RequestBody Map<String,Object> map) {
+		CmmRslt rslt = CmmRslt.getSuccessResult();
+		rslt.setData( service.upsert(map) );
+		return rslt;
+	}
+	
 	@PostMapping("/info")
 	public CmmRslt insert(@RequestBody Map<String,Object> map) {
 		CmmRslt rslt = CmmRslt.getSuccessResult();

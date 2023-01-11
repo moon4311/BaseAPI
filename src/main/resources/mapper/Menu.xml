@@ -53,6 +53,7 @@
 						SORT = #{sort}
 		<include refid="where" />
 	</update>
+	
 	<!-- 입력 -->
 	<delete id="delete" parameterType="map">
 		DELETE
