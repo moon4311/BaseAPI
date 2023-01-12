@@ -44,7 +44,7 @@
 		SET			TEMPLATE_ID 	=  #{templateId},
 						TEMPLATE_NM 	= #{templateNm},
 						CONTENT	 		= #{content},
-						MENO 				= #{memo}
+						MEMO 				= #{memo}
 		<include refid="where" />
 	</update>
 	<!-- 입력 -->

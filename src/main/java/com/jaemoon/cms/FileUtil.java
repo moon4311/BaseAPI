@@ -50,6 +50,7 @@ public class FileUtil {
 	}
 	
 	public static void writeVue(String pathStr, String file, String str) {
+		if( ! file.contains(".vue") ) file +=".vue";
 		writeFile( vuePath +  File.separator + pathStr  , file, str);
 	}
 }
