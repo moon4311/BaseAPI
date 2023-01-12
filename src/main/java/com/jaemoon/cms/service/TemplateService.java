@@ -7,7 +7,9 @@ import org.springframework.stereotype.Service;
 import com.jaemoon.base.BaseServiceIf;
 import com.jaemoon.base.CmmRslt;
 import com.jaemoon.base.ServiceParent;
+import com.jaemoon.cms.FileUtil;
 import com.jaemoon.cms.mapper.VueTemplateMapper;
+import com.jaemoon.cms.model.VueTemplate;
 
 import lombok.RequiredArgsConstructor;
 
@@ -62,6 +64,19 @@ public class TemplateService extends ServiceParent  implements BaseServiceIf{
 		return rslt;
 	}
 	
-
+	
+	public CmmRslt make(Map<String,String> map) {
+		//템플릿 내용 조회
+		String sno = map.get("sno");
+		String content = ((VueTemplate)selectOne(sno)).getContent();
+		
+		//가공
+		content = String.format(content, map.get("menuNm") );
+		
+		String path = map.get("path");
+		String fileNm = map.get("fileNm");
+		FileUtil.writeVue(	path, fileNm, content );
+		return CmmRslt.getSuccessResult();
+	}
 	
 }

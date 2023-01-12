@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jaemoon.base.CmmRslt;
+import com.jaemoon.cms.FileUtil;
 import com.jaemoon.cms.service.TemplateService;
 
 @RestController
@@ -41,6 +42,14 @@ public class TemplateController {
 	public CmmRslt save(@RequestBody Map<String,Object> map) {
 		CmmRslt rslt = CmmRslt.getSuccessResult();
 		rslt.setData( service.upsert(map) );
+		return rslt;
+	}
+	
+	@PostMapping("/make")
+	public CmmRslt make(@RequestBody Map<String,String> map) {
+		CmmRslt rslt = CmmRslt.getSuccessResult();
+		
+		rslt.setData( service.make(map) );
 		return rslt;
 	}
 	
