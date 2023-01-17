@@ -1,6 +1,7 @@
 package com.jaemoon.cms.service;
 
 import java.util.Map;
+import java.util.Map.Entry;
 
 import org.springframework.stereotype.Service;
 
@@ -71,11 +72,11 @@ public class TemplateService extends ServiceParent  implements BaseServiceIf{
 		String content = ((VueTemplate)selectOne(sno)).getContent();
 		
 		//가공
-		content = String.format(content, map.get("menuNm") );
+		for (Entry<String, String> set : map.entrySet() ) {
+			content = content.replace( "#{"+set.getKey()+"}", set.getValue() );
+		}
 		
-		String path = map.get("path");
-		String fileNm = map.get("fileNm");
-		FileUtil.writeVue(	path, fileNm, content );
+		FileUtil.writeVue( map.get("path") , map.get("fileNm") , content );
 		return CmmRslt.getSuccessResult();
 	}
 	
