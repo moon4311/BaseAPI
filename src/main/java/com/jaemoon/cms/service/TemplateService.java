@@ -67,16 +67,19 @@ public class TemplateService extends ServiceParent  implements BaseServiceIf{
 	
 	
 	public CmmRslt make(Map<String,String> map) {
-		//템플릿 내용 조회
+//		before
+/*		템플릿 내용 조회
 		String sno = map.get("sno");
+		가공
 		String content = ((VueTemplate)selectOne(sno)).getContent();
-		
-		//가공
 		for (Entry<String, String> set : map.entrySet() ) {
 			content = content.replace( "#{"+set.getKey()+"}", set.getValue() );
 		}
+		FileUtil.writeVue( map.get("path") , map.get("fileNm") , map.get("content") );
+*/
 		
-		FileUtil.writeVue( map.get("path") , map.get("fileNm") , content );
+//		 after
+		FileUtil.writeVue( map.get("path") , map.get("fileNm") , map.get("content") );
 		return CmmRslt.getSuccessResult();
 	}
 	
