@@ -10,7 +10,7 @@ public class WebInterceptor implements AsyncHandlerInterceptor {
 
 	@Override
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler){
-		System.err.println("prehandle");
+//		System.err.println("prehandle");
 		return true;
 		
 	}
@@ -19,6 +19,6 @@ public class WebInterceptor implements AsyncHandlerInterceptor {
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object obj, ModelAndView mav)
 			throws Exception {
-		System.err.println("postHandle : " + response.getStatus());
+//		System.err.println("postHandle : " + response.getStatus());
 	}
 }

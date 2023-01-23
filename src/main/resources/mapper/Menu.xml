@@ -50,6 +50,7 @@
 						PATH = #{path},
 						COMPONENT = #{component},
 						LEVEL= #{level},
+						USE_YN = #{useYn},
 						SORT = #{sort}
 		<include refid="where" />
 	</update>

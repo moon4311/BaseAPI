@@ -18,8 +18,12 @@ public abstract class ServiceParent extends RsltCd {
 	}
 	
 	public static boolean isNullPk(Map<String,Object> map, String pk) {
-		String val = (String)map.get(pk);
-		return val==null || val.equals("");
-		
+		try {
+			String val = (String)map.get(pk);
+			return val==null || val.equals("");
+		}catch(ClassCastException e) {
+			Integer val = (Integer)map.get(pk);
+			return val == null ;
+		}
 	}
 }
