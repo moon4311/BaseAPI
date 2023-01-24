@@ -1,10 +1,10 @@
-package com.jaemoon.cmm.web;
+
+package com.jaemoon.shop.web;
 
 import java.util.Map;
 
 import javax.annotation.Resource;
 
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,14 +15,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jaemoon.base.CmmRslt;
-import com.jaemoon.cmm.service.AuthRoleService;
+import com.jaemoon.shop.service.ProductService;
 
 @RestController
-@RequestMapping("/authRole")
-public class AuthRoleController {
+@RequestMapping("/shop/product")
+public class ProductController {
 
 	@Resource
-	private AuthRoleService service;
+	private ProductService service;
 	
 	@GetMapping("/list")
 	public CmmRslt getList(@RequestParam Map<String,Object> map) {
@@ -59,7 +59,7 @@ public class AuthRoleController {
 		return rslt;
 	}
 	
-	@DeleteMapping("/info")
+	@PostMapping("/del")
 	public CmmRslt delete(@RequestBody Map<String,Object> map) {
 		CmmRslt rslt = CmmRslt.getSuccessResult();
 		rslt.setData( service.delete(map) );

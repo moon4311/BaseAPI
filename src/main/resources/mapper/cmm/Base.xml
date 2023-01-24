@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Base">
+ 
+ 	<sql id="select">
+ 		,DATE_FORMAT(REGIST_DT,'%Y-%m-%d %h:%i:%s') REGIST_DT
+ 		,REGIST_ID
+ 		,DATE_FORMAT(UPDATE_DT,'%Y-%m-%d %h:%i:%s') UPDATE_DT
+ 		,UPDATE_ID
+ 	</sql>
+ 	<sql id="insert_select">
+ 		,REGIST_DT
+ 		,REGIST_ID
+ 		,UPDATE_DT
+ 		,UPDATE_ID
+ 	</sql>
+ 	<sql id="insert">
+ 		,now()
+ 		,NVL(#{registId},"SYSTEM")
+ 		,now()
+ 		,NVL(#{registId},"SYSTEM")
+ 	</sql>
+ 	<sql id="update">
+		,UPDATE_DT = now()
+		,UPDATE_ID = NVL (#{updateId},"SYSTEM")
+ 	</sql>
+ 
+</mapper>

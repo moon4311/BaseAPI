@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jaemoon.cmm.mapper.AuthRoleMapper">
+ 
+ 	<sql id="tblnm">AUTH_ROLE_TB</sql>
+ 	<sql id="where">WHERE ROLE_ID = #{roleId}</sql>
+ 	
+ 	<!-- 다건 조회 -->
+ 	<select id="selectList" parameterType="map" resultType="AuthRole">
+		SELECT 	*
+		FROM 		<include refid="tblnm" />
+		WHERE 		1=1
+	</select>
+	
+ 	<!-- 단건 조회 -->
+ 	<select id="selectOne" parameterType="map" resultType="AuthRole">
+		SELECT 		*
+		FROM 		<include refid="tblnm" />
+		<include refid="where" />
+	</select>
+
+	<!-- 입력 -->
+	<insert id="insert" parameterType="map">
+		INSERT INTO <include refid="tblnm"/>
+		(
+			ROLE_ID,
+			ROLE_NM,
+			ROLE_PTTRN,
+			ROLE_DC,
+			ROLE_TYPE,
+			ROLE_SORT
+			<include refid="Base.insert_select"/>
+		)
+		VALUES
+		(
+			fn_seq('role'),
+			#{roleNm},
+			#{rolePttrn},
+			#{roleDc},
+			#{roleType},
+			#{roleSort}
+			<include refid="Base.insert"/>
+		)
+	</insert>
+	<!-- 수정-->
+	<update id="update" parameterType="map">
+		UPDATE 	<include refid="tblnm"/>
+		SET			ROLE_NM 		= #{roleNm},
+						ROLE_PTTRN = #{rolePttrn},
+						ROLE_DC		= #{roleDc},
+						ROLE_TYPE	= #{roleType},
+						ROLE_SORT 	= #{roleSort}
+						<include refid="Base.update"/>
+		<include refid="where" />
+	</update>
+	<!-- 입력 -->
+	<delete id="delete" parameterType="map">
+		DELETE
+		FROM		<include refid="tblnm"/>
+		<include refid="where" />
+	</delete>
+</mapper>
