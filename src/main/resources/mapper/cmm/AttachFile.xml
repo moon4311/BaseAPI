@@ -1,39 +1,51 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.jaemoon.cms.mapper.VueTemplateMapper">
+<mapper namespace="com.jaemoon.cmm.mapper.AttachFileMapper">
  
- 	<sql id="tblnm">vue_template_tb</sql>
- 	<sql id="where">WHERE SNO = #{sno}</sql>
+ 	<sql id="tblnm">attach_file_tb</sql>
+ 	<sql id="where">WHERE FILE_SNO = #{filerSno}</sql>
  	
  	<!-- 다건 조회 -->
- 	<select id="selectList" parameterType="map" resultType="VueTemplate">
+ 	<select id="selectList" parameterType="map" resultType="AttachFile">
 		SELECT 	*
 		FROM 		<include refid="tblnm" />
 		WHERE		1=1
 	</select>
 	
  	<!-- 단건 조회 -->
- 	<select id="selectOne" parameterType="map" resultType="VueTemplate">
-		SELECT 		*
+ 	<select id="selectOne" parameterType="map" resultType="AttachFile">
+		SELECT 	*
 		FROM 		<include refid="tblnm" />
 		<include refid="where" />
+	</select>
+	
+ 	<select id="getSeq" resultType="String">
+		SELECT 	fn_seq('file')
 	</select>
 
 	<!-- 입력 -->
 	<insert id="insert" parameterType="map">
 		INSERT INTO <include refid="tblnm"/>
 		(
-			TEMPLATE_ID,
-			TEMPLATE_NM,
-			CONTENT,
-			MEMO
+			FILE_SNO
+			,FILE_NO
+			,FILE_ORIGIN_NM
+			,FOLDER_NM
+			,FILE_NM
+			,FILE_EXT
+			,FILE_SIZE
+			<include refid="Base.insert_select"/>	
 		)
 		VALUES
 		(
-			#{templateId},
-			#{templateNm},
-			#{content},
-			#{memo}
+			#{fileSno}
+			,#{fileNo}
+			,#{fileOriginNm}
+			,#{folderNm}
+			,#{fileNm}
+			,#{fileExt}
+			,#{fileSize}
+			<include refid="Base.insert"/>
 		)
 	</insert>
 	
@@ -41,10 +53,9 @@
 	<!-- 수정-->
 	<update id="update" parameterType="map">
 		UPDATE 	<include refid="tblnm"/>
-		SET			TEMPLATE_ID 	=  #{templateId},
-						TEMPLATE_NM 	= #{templateNm},
-						CONTENT	 		= #{content},
-						MEMO 				= #{memo}
+		SET			BANNER_NM 	=  #{bannerNm},
+						WIDTH	 		= #{width},
+						HEIGHT 			= #{height}
 		<include refid="where" />
 	</update>
 	<!-- 입력 -->

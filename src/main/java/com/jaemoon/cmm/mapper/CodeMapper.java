@@ -17,6 +17,7 @@ public interface CodeMapper {
 
   public List<Code> selectList(Map<String,Object> map);
   public Code selectOne(String id);
+  public List<Code> selectOptions(String id);
   
   public int insertGroup(Map<String,Object> map);
   public int insert(Map<String,Object> map);

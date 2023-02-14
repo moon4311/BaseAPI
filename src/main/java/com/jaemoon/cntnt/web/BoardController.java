@@ -1,10 +1,10 @@
-
-package com.jaemoon.cms.web;
+package com.jaemoon.cntnt.web;
 
 import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,18 +15,19 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jaemoon.base.CmmRslt;
-import com.jaemoon.cms.service.TemplateService;
+import com.jaemoon.cntnt.service.BoardService;
 
 @RestController
-@RequestMapping("/template")
-public class TemplateController {
+@RequestMapping("/board")
+public class BoardController {
 
 	@Resource
-	private TemplateService service;
+	private BoardService service;
 	
 	@GetMapping("/list")
 	public CmmRslt getList(@RequestParam Map<String,Object> map) {
 		CmmRslt rslt = CmmRslt.getSuccessResult();
+//		rslt.setList( service.selectList(map));
 		rslt.setData( service.selectList(map));
 		return rslt;
 	}
@@ -45,20 +46,6 @@ public class TemplateController {
 		return rslt;
 	}
 	
-	@PostMapping("/makeVue")
-	public CmmRslt makeVue(@RequestBody Map<String,String> map) {
-		CmmRslt rslt = CmmRslt.getSuccessResult();
-		rslt.setData( service.makeVue(map) );
-		return rslt;
-	}
-	
-	@PostMapping("/makeMapper")
-	public CmmRslt makeMapper(@RequestBody Map<String,String> map) {
-		CmmRslt rslt = CmmRslt.getSuccessResult();
-		rslt.setData( service.makeMapper(map) );
-		return rslt;
-	}
-	
 	@PostMapping("/info")
 	public CmmRslt insert(@RequestBody Map<String,Object> map) {
 		CmmRslt rslt = CmmRslt.getSuccessResult();
@@ -73,7 +60,7 @@ public class TemplateController {
 		return rslt;
 	}
 	
-	@PostMapping("/del")
+	@DeleteMapping("/info")
 	public CmmRslt delete(@RequestBody Map<String,Object> map) {
 		CmmRslt rslt = CmmRslt.getSuccessResult();
 		rslt.setData( service.delete(map) );

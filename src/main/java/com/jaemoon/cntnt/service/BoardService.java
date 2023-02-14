@@ -1,4 +1,4 @@
-package com.jaemoon.cmm.service;
+package com.jaemoon.cntnt.service;
 
 import java.util.Map;
 
@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import com.jaemoon.base.BaseServiceIf;
 import com.jaemoon.base.CmmRslt;
 import com.jaemoon.base.ServiceParent;
-import com.jaemoon.cmm.mapper.BoardMapper;
+import com.jaemoon.cntnt.mapper.BoardMapper;
 
 import lombok.RequiredArgsConstructor;
 

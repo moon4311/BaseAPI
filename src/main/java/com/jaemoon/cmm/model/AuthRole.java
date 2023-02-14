@@ -28,6 +28,6 @@ import lombok.Setter;
 @Setter
 public final class AuthRole extends BaseModel{
 
-    private String roleId, roleNm, rolePttrn,roleDc,roleType, roleSort;
+    private String roleId, roleNm, rolePttrn,roleDc,roleType,httpMethod, roleSort;
     
 }

@@ -9,4 +9,6 @@ public class Code {
 
 	private String groupCd, cd, nm, useYn;
 	private int sort;
+	
+	private String label, value;
 }

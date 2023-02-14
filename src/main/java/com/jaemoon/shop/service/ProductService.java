@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import com.jaemoon.base.BaseServiceIf;
 import com.jaemoon.base.CmmRslt;
 import com.jaemoon.base.ServiceParent;
-import com.jaemoon.cms.FileUtil;
+import com.jaemoon.base.util.FileUtil;
 import com.jaemoon.shop.mapper.ProductMapper;
 import lombok.RequiredArgsConstructor;
 

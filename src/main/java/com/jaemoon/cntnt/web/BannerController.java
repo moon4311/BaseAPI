@@ -1,10 +1,12 @@
-package com.jaemoon.cmm.web;
 
+package com.jaemoon.cntnt.web;
+
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,21 +15,21 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartRequest;
 
 import com.jaemoon.base.CmmRslt;
-import com.jaemoon.cmm.service.BoardService;
+import com.jaemoon.cntnt.service.BannerService;
 
 @RestController
-@RequestMapping("/board")
-public class BoardController {
+@RequestMapping("/banner")
+public class BannerController {
 
 	@Resource
-	private BoardService service;
+	private BannerService service;
 	
 	@GetMapping("/list")
 	public CmmRslt getList(@RequestParam Map<String,Object> map) {
 		CmmRslt rslt = CmmRslt.getSuccessResult();
-//		rslt.setList( service.selectList(map));
 		rslt.setData( service.selectList(map));
 		return rslt;
 	}
@@ -40,9 +42,13 @@ public class BoardController {
 	}
 	
 	@PostMapping("/save")
-	public CmmRslt save(@RequestBody Map<String,Object> map) {
+//	public CmmRslt save(@RequestBody Map<String,Object> map) {
+	public CmmRslt save(MultipartRequest multipart, HttpServletRequest req) {
 		CmmRslt rslt = CmmRslt.getSuccessResult();
-		rslt.setData( service.upsert(map) );
+		Map<String,Object> map = new HashMap<String,Object>();
+		service.upsert( multipart.getFiles("files") , map );
+		
+//		rslt.setData( service.upsert(map) );
 		return rslt;
 	}
 	
@@ -60,7 +66,7 @@ public class BoardController {
 		return rslt;
 	}
 	
-	@DeleteMapping("/info")
+	@PostMapping("/del")
 	public CmmRslt delete(@RequestBody Map<String,Object> map) {
 		CmmRslt rslt = CmmRslt.getSuccessResult();
 		rslt.setData( service.delete(map) );

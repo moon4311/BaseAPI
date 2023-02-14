@@ -56,6 +56,10 @@ public class CodeService extends ServiceParent  implements BaseServiceIf{
 		return mapper.selectList(map);
 	}
 	
+	public Object selectOptions(String id) {
+		return mapper.selectOptions(id);
+	}
+	
 	@Override
 	public CmmRslt upsert(Map<String, Object> map) {
 		CmmRslt rslt = CmmRslt.getSuccessResult();

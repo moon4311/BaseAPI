@@ -22,6 +22,15 @@
 		FROM 		<include refid="tblnm" />
 		<include refid="where" />
 	</select>
+	
+ 	<!-- 단건 조회 -->
+ 	<select id="selectOptions" parameterType="map" resultType="Code">
+		SELECT 	CD value,
+						NM label
+		FROM 		<include refid="tblnm" />
+		WHERE		GROUP_CD = #{groupCd}
+		ORDER BY SORT
+	</select>
 
 	<!-- 입력 -->
 	<insert id="insertGroup" parameterType="map">

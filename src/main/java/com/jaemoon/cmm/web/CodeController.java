@@ -31,6 +31,13 @@ public class CodeController {
 		return rslt;
 	}
 	
+	@GetMapping("/options/{id}")
+	public CmmRslt getOptions(@PathVariable(name = "id") String id) {
+		CmmRslt rslt = CmmRslt.getSuccessResult();
+		rslt.setData( service.selectOptions(id));
+		return rslt;
+	}
+	
 	@GetMapping("/info/{id}")
 	public CmmRslt getInfo(@PathVariable(name = "id") String id) {
 		CmmRslt rslt = CmmRslt.getSuccessResult();

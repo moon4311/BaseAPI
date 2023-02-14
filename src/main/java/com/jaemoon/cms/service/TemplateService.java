@@ -1,16 +1,14 @@
 package com.jaemoon.cms.service;
 
 import java.util.Map;
-import java.util.Map.Entry;
 
 import org.springframework.stereotype.Service;
 
 import com.jaemoon.base.BaseServiceIf;
 import com.jaemoon.base.CmmRslt;
 import com.jaemoon.base.ServiceParent;
-import com.jaemoon.cms.FileUtil;
-import com.jaemoon.cms.mapper.VueTemplateMapper;
-import com.jaemoon.cms.model.VueTemplate;
+import com.jaemoon.base.util.FileUtil;
+import com.jaemoon.cms.mapper.FileTemplateMapper;
 
 import lombok.RequiredArgsConstructor;
 
@@ -19,7 +17,7 @@ import lombok.RequiredArgsConstructor;
 public class TemplateService extends ServiceParent  implements BaseServiceIf{
 
 	// 수정 1
-	private final VueTemplateMapper mapper;
+	private final FileTemplateMapper mapper;
 
 	// 수정 2	
 	private final static String PK = "sno";
@@ -66,20 +64,12 @@ public class TemplateService extends ServiceParent  implements BaseServiceIf{
 	}
 	
 	
-	public CmmRslt make(Map<String,String> map) {
-//		before
-/*		템플릿 내용 조회
-		String sno = map.get("sno");
-		가공
-		String content = ((VueTemplate)selectOne(sno)).getContent();
-		for (Entry<String, String> set : map.entrySet() ) {
-			content = content.replace( "#{"+set.getKey()+"}", set.getValue() );
-		}
+	public CmmRslt makeVue(Map<String,String> map) {
 		FileUtil.writeVue( map.get("path") , map.get("fileNm") , map.get("content") );
-*/
-		
-//		 after
-		FileUtil.writeVue( map.get("path") , map.get("fileNm") , map.get("content") );
+		return CmmRslt.getSuccessResult();
+	}
+	public CmmRslt makeMapper(Map<String,String> map) {
+		FileUtil.writeMapper( map.get("path") , map.get("fileNm") , map.get("content") );
 		return CmmRslt.getSuccessResult();
 	}
 	

@@ -5,6 +5,6 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class VueTemplate {
-	private String sno, templateId, templateNm, content, memo;
+public class FileTemplate {
+	private String sno, templateTypeCd, templateNm, content, memo;
 }

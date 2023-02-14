@@ -1,4 +1,4 @@
-package com.jaemoon.cmm.mapper;
+package com.jaemoon.cntnt.mapper;
 
 import java.util.List;
 import java.util.Map;
