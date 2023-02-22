@@ -14,7 +14,7 @@ public interface AttachFileMapper {
 	  public AttachFile selectOne(String id);
 	  
 	  public String getSeq();
-	  public int insert(Map<String,Object> map);
+	  public int insert(AttachFile file);
 	  public int update(Map<String,Object> map);
 	  public void delete(Map<String,Object> map);
 	  

@@ -1,16 +1,17 @@
 package com.jaemoon.cntnt.service;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.jaemoon.base.BaseServiceIf;
 import com.jaemoon.base.CmmRslt;
 import com.jaemoon.base.ServiceParent;
+import com.jaemoon.base.util.FileUtil;
 import com.jaemoon.cmm.mapper.AttachFileMapper;
 import com.jaemoon.cmm.model.AttachFile;
 import com.jaemoon.cntnt.mapper.BannerMapper;
@@ -70,35 +71,31 @@ public class BannerService extends ServiceParent  implements BaseServiceIf{
 		return rslt;
 	}
 	
+	@Transactional
 	public CmmRslt upsert(List<MultipartFile> fileList,  Map<String, Object> map) {
 		CmmRslt rslt = CmmRslt.getSuccessResult();
 		
 		String seq = fileMapper.getSeq();
+		map.put("fileSno", seq);
+		//배너 입력
+		mapper.insert(map);
 		
 		AttachFile dto = new AttachFile();
 		dto.setFileSno(seq);
-		
-		
-		//TODO 첨부파일 인서트, 파일 생성
+		dto.setFolderNm("banner");
+		AtomicInteger indexHolder = new AtomicInteger();
 		fileList.forEach( file ->{
-			dto.setFileNo(seq);
-			dto.setFileNm(file.getName());
-			dto.setFileOriginNm(file.getOriginalFilename());
+			
+			String oNm = file.getOriginalFilename();
+			dto.setFileNo( indexHolder.getAndIncrement()  );
+			dto.setFileOriginNm(oNm);
+			dto.setFileExt(oNm.substring(oNm.lastIndexOf(".")+1));
 			dto.setFileSize(file.getSize());
-			System.err.println(dto);
-			File upload = new File("fileName.txt");
-			try {
-				file.transferTo(upload);
-			} catch (IllegalStateException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			//파일 생성
+			FileUtil.uploadFile(dto, file  );
+			//첨부파일 입력
+			fileMapper.insert(dto);
 		});
-		
-		//TODO 배너 입력
 		
 		return rslt;
 	}

@@ -46,6 +46,13 @@ public class BannerController {
 	public CmmRslt save(MultipartRequest multipart, HttpServletRequest req) {
 		CmmRslt rslt = CmmRslt.getSuccessResult();
 		Map<String,Object> map = new HashMap<String,Object>();
+		map.put("bannerNm", req.getParameter("bannerNm"));
+		map.put("width", req.getParameter("width"));
+		map.put("height", req.getParameter("height"));
+		map.put("startDt", req.getParameter("startDt"));
+		map.put("endDt", req.getParameter("endDt"));
+		map.put("useYn", req.getParameter("useYn"));
+		
 		service.upsert( multipart.getFiles("files") , map );
 		
 //		rslt.setData( service.upsert(map) );

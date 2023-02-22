@@ -25,13 +25,21 @@
 		(
 			BANNER_NM,
 			WIDTH,
-			HEIGHT
+			HEIGHT,
+			START_DT,
+			END_DT,
+			USE_YN
+			<include refid="Base.insert_select"/>
 		)
 		VALUES
 		(
 			#{bannerNm},
 			#{width},
-			#{height}
+			#{height},
+			NVL(from_unixtime(#{startDt}, "%Y-%m-%d"), now()),
+			NVL(from_unixtime(#{endDt}, "%Y-%m-%d"), now()),
+			NVL(#{useYn},'Y')
+			<include refid="Base.insert"/>
 		)
 	</insert>
 	
@@ -41,7 +49,10 @@
 		UPDATE 	<include refid="tblnm"/>
 		SET			BANNER_NM 	=  #{bannerNm},
 						WIDTH	 		= #{width},
-						HEIGHT 			= #{height}
+						HEIGHT 			= #{height},
+						START_DT		= #{startDt},
+						END_DT 		= #{endDt},
+						USE_YN			= #{useYn}
 		<include refid="where" />
 	</update>
 	<!-- 입력 -->

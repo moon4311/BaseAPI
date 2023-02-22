@@ -9,7 +9,8 @@ import lombok.Setter;
 @Getter
 public class AttachFile extends BaseModel{
 
-	private String fileSno, fileNo;
+	private String fileSno;
+	private int fileNo;
 	private String fileOriginNm;
 	private String folderNm, fileNm, fileExt;
 	private long fileSize;

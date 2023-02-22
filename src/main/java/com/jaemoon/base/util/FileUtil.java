@@ -5,9 +5,14 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.jaemoon.cmm.model.AttachFile;
 
 @Component
 public class FileUtil {
@@ -50,8 +55,31 @@ public class FileUtil {
 		}
 	}
 
-	public static void uploadFile(String pathStr, String file, String str) {
-		writeFile( uploadPath +  File.separator + pathStr  , file, str);
+	public static void uploadFile(AttachFile dto , MultipartFile file ) {
+		try {
+			//폴더 생성
+			String pathStr = uploadPath +  File.separator + dto.getFolderNm() ;
+			mkdir(pathStr);
+			
+			//파일 생성
+			String fileNm = makeFileName(dto.getFileExt());
+			dto.setFileNm(fileNm);
+			File upload = new File( pathStr + File.separator + fileNm);
+			file.transferTo(upload);
+		} catch (IllegalStateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	private static String makeFileName(String ext) {
+		SimpleDateFormat sdf = new SimpleDateFormat();
+//		sdf.setCalendar(Calendar.getInstance());
+		sdf.applyPattern("yMMddhhmmsss");
+		return String.format("%s.%s", sdf.format(Calendar.getInstance().getTime()), ext);
 	}
 	
 	public static void writeVue(String pathStr, String file, String str) {
