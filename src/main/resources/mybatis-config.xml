@@ -32,6 +32,7 @@
         <typeAlias alias="map" type="java.util.Map" /> 
     	<package name="com.jaemoon.cmm.model"/>
     	<package name="com.jaemoon.cms.model"/>
+    	<package name="com.jaemoon.cntnt.model"/>
     	<package name="com.jaemoon.shop.model"/>
     </typeAliases>
 </configuration>

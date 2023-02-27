@@ -10,6 +10,12 @@
 		SELECT 	*
 		FROM 		<include refid="tblnm" />
 		WHERE 		1=1
+		<if test='showYn !=null and !showYn.equals("")'>
+		AND	SHOW_YN=#{showYn}
+		</if>
+		<if test='useYn !=null and !useYn.equals("")'>
+		AND	USE_YN=#{useYn}
+		</if>
 		ORDER BY LEVEL desc, SORT
 	</select>
 	

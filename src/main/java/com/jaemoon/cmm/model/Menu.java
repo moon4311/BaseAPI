@@ -7,6 +7,6 @@ import lombok.Setter;
 @Setter
 public class Menu {
 
-	private String menuId, name, upperMenuId, path,component, useYn;
+	private String menuId, name, upperMenuId, path,component, showYn, useYn;
 	private int level, sort;
 }

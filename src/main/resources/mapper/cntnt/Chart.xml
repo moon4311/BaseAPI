@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.jaemoon.cntnt.mapper.BannerMapper">
+<mapper namespace="com.jaemoon.cntnt.mapper.ChartMapper">
  
- 	<sql id="tblnm">banner_tb</sql>
- 	<sql id="where">WHERE BANNER_SNO = #{bannerSno}</sql>
+ 	<sql id="tblnm">chart_tb</sql>
+ 	<sql id="where">WHERE CHART_SNO = #{chartSno}</sql>
  	
  	<!-- 다건 조회 -->
- 	<select id="selectList" parameterType="map" resultType="Banner">
+ 	<select id="selectList" parameterType="map" resultType="Chart">
 		SELECT 	*
 		FROM 		<include refid="tblnm" />
 		WHERE		1=1
 	</select>
 	
  	<!-- 단건 조회 -->
- 	<select id="selectOne" parameterType="map" resultType="Banner">
+ 	<select id="selectOne" parameterType="map" resultType="Chart">
 		SELECT 		*
 		FROM 		<include refid="tblnm" />
 		<include refid="where" />
@@ -23,25 +23,23 @@
 	<insert id="insert" parameterType="map">
 		INSERT INTO <include refid="tblnm"/>
 		(
-			BANNER_NM,
-			FILE_SNO,
+			USER_NO,
+			CHART_TYPE_CD,
+			CHART_NM,
 			WIDTH,
 			HEIGHT,
-			START_DT,
-			END_DT,
-			USE_YN
-			<include refid="Base.insert_select"/>
+			LABELS,
+			DATASETS
 		)
 		VALUES
 		(
-			#{bannerNm},
-			#{fileSno},
+			#{userNo},
+			#{chartTypeCd},
+			#{chartNm},
 			#{width},
 			#{height},
-			NVL(from_unixtime(#{startDt}, "%Y-%m-%d"), now()),
-			NVL(from_unixtime(#{endDt}, "%Y-%m-%d"), now()),
-			NVL(#{useYn},'Y')
-			<include refid="Base.insert"/>
+			#{labels},
+			#{datasets}
 		)
 	</insert>
 	
@@ -49,12 +47,9 @@
 	<!-- 수정-->
 	<update id="update" parameterType="map">
 		UPDATE 	<include refid="tblnm"/>
-		SET			BANNER_NM 	=  #{bannerNm},
+		SET			CHART_NM 	=  #{chartNm},
 						WIDTH	 		= #{width},
-						HEIGHT 			= #{height},
-						START_DT		= #{startDt},
-						END_DT 		= #{endDt},
-						USE_YN			= #{useYn}
+						HEIGHT 			= #{height}
 		<include refid="where" />
 	</update>
 	<!-- 입력 -->
