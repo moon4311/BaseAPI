@@ -24,11 +24,12 @@
 	</select>
 	
  	<!-- 단건 조회 -->
- 	<select id="selectOptions" parameterType="map" resultType="Code">
+ 	<select id="selectOptions" parameterType="map" resultType="SelectOption">
 		SELECT 	CD value,
-						NM label
-		FROM 		<include refid="tblnm" />
-		WHERE		GROUP_CD = #{groupCd}
+					NM label
+		FROM 	<include refid="tblnm" />
+		WHERE	GROUP_CD = #{groupCd}
+		AND		USE_YN = 'Y'
 		ORDER BY SORT
 	</select>
 

@@ -11,7 +11,7 @@
 
     <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
-            <pattern>%d{HH:mm:ss.SSS} [%-5level] %logger{15} - %msg%n%rEx</pattern>
+            <pattern>%d{YY-MM-dd HH:mm:ss.SSS} [%-5level] %logger{15} - %msg%n%rEx</pattern>
         </encoder>
     </appender>
 
@@ -47,14 +47,14 @@
 
 	<logger name="org.apache.mybatis">
 		<level value="WARN"/>
-		<appender-ref ref="CONSOLE"/>
-		<appender-ref ref="FILE"/>
+		<!-- <appender-ref ref="CONSOLE"/>
+		<appender-ref ref="FILE"/> -->
 	</logger>
 	
-	<logger name="org.springframework">
+	<logger name="org.springframework" >
 		<level value="INFO"/>
-		<appender-ref ref="CONSOLE"/>
-		<appender-ref ref="FILE"/>
+		<!-- <appender-ref ref="CONSOLE"/>
+		<appender-ref ref="FILE"/> -->
 	</logger>
 	
     <!-- <logger name="logger" level="INFO" appender-ref="CONSOLE"/> -->

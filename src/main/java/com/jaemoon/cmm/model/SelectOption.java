@@ -5,8 +5,6 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class Code {
-
-	private String groupCd, cd, nm, useYn;
-	private int sort;
+public class SelectOption {
+	private String label, value;
 }
