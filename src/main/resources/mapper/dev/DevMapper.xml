@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jaemoon.cms.mapper.DevMapper">
+ 
+ 	<sql id="tblnm"> ${tblNm} </sql>
+ 	
+ 	<sql id="select">
+ 		,DATE_FORMAT(REGIST_DT,'%Y-%m-%d %h:%i:%s') REGIST_DT
+ 		,REGIST_ID
+ 		,DATE_FORMAT(UPDATE_DT,'%Y-%m-%d %h:%i:%s') UPDATE_DT
+ 		,UPDATE_ID
+ 	</sql>
+ 	<sql id="insert_select">
+ 		,REG_DT
+ 		,RGTR_ID
+ 		,MDFCN_DT
+ 		,MDFR_ID
+ 	</sql>
+ 	<sql id="insert">
+ 		,now()
+ 		,NVL(#{registId},"SYSTEM")
+ 		,now()
+ 		,NVL(#{registId},"SYSTEM")
+ 	</sql>
+ 	<sql id="update">
+		,UPDATE_DT = now()
+		,UPDATE_ID = NVL (#{updateId},"SYSTEM")
+ 	</sql>
+ 	
+ 	<sql id="where">WHERE ${PK} = #{PK_VALUE}</sql>
+ 	
+ 	<!-- 다건 조회 -->
+ 	<select id="selectList" parameterType="map" resultType="map">
+		SELECT 	*
+		FROM 		<include refid="tblnm" />
+		WHERE		1=1
+		<foreach collection="whereList" item="key" open="AND" separator="AND" >
+			${key}
+		</foreach>
+	</select>
+	
+ 	<!-- 단건 조회 -->
+ 	<select id="selectOne" parameterType="map" resultType="map">
+		SELECT 		*
+		FROM 		<include refid="tblnm" />
+		<include refid="where" />
+	</select>
+
+	<!-- 입력 -->
+	<insert id="insert" parameterType="map">
+		INSERT INTO <include refid="tblnm"/>
+		(
+			${PK} ,
+			<foreach collection="keyList" item="key" separator="," >${key}</foreach>
+			<include refid="insert_select"/>
+		)
+		VALUES
+		(
+			fn_seq(#{tblNm}) ,
+			
+			<foreach collection="valueList" item="value" separator="," >#{value}</foreach>
+			<include refid="insert"/>
+		)
+	</insert>
+	
+	
+	<!-- 수정-->
+	<update id="update" parameterType="map">
+		UPDATE 	<include refid="tblnm"/>
+		SET			
+		<include refid="where" />
+	</update>
+	
+	<!-- 삭제 -->
+	<delete id="delete" parameterType="map">
+		DELETE
+		FROM		<include refid="tblnm"/>
+		<include refid="where" />
+	</delete>
+</mapper>
