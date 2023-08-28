@@ -10,7 +10,7 @@
 		SELECT 	*
 		FROM 		<include refid="tblnm" />
 		WHERE		1=1
-		<if test="templateTypeCd!=null">
+		<if test='templateTypeCd!=null and !templateTypeCd.equals("") '>
 		AND	TEMPLATE_TYPE_CD = #{templateTypeCd}
 		</if>
 	</select>
