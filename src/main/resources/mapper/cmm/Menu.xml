@@ -36,7 +36,8 @@
 			PATH,
 			COMPONENT,
 			LEVEL,
-			SORT
+			SORT,
+			SHOW_YN
 		)
 		VALUES
 		(
@@ -46,7 +47,8 @@
 			#{path},
 			#{component},
 			#{level},
-			#{sort}
+			#{sort},
+			#{showYn}
 		)
 	</insert>	
 	<!-- 수정-->

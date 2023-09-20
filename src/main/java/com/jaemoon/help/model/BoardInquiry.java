@@ -16,9 +16,9 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  */
-package com.jaemoon.cmm.model;
+package com.jaemoon.help.model;
 
-import com.jaemoon.base.BaseModel;
+import com.jaemoon.cmm.model.Board;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -26,8 +26,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class Board extends BaseModel{
+public final class BoardInquiry extends Board{
 
-    private Integer seq, userNo;
-    private String title, content;
+    private String answer, statusCd;
 }
